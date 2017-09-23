@@ -28,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
         setTitle("SixTwelveSix");
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
     }
 
 

@@ -3,151 +3,140 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Blood Glucose Levels"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/t_lowBlood"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Low Blood Sugar" />
+
+    <EditText
+        android:id="@+id/e_lowBlood"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="4.0" />
+
+    <TextView
+        android:id="@+id/t_highBlood"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="High Blood Sugar" />
+
+    <EditText
+        android:id="@+id/e_highBlood"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="9.0" />
+
+    <TextView
+        android:id="@+id/t_veryHighBlood"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Very High Blood Sugar" />
+
+    <EditText
+        android:id="@+id/e_veryHighBlood"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="15.0" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Meal Times"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/t_breakfastTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Breakfast" />
+
+    <EditText
+        android:id="@+id/e_breakfastTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time"
+        android:text="8:00" />
+
+    <TextView
+        android:id="@+id/t_lunchTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lunch" />
+
+    <EditText
+        android:id="@+id/e_lunchTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time"
+        android:text="12:00" />
+
+    <TextView
+        android:id="@+id/t_supperTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Supper" />
+
+    <EditText
+        android:id="@+id/e_supperTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time"
+        android:text="17:00" />
+
+    <TextView
+        android:id="@+id/t_nightTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Night" />
+
+    <EditText
+        android:id="@+id/e_nightTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time"
+        android:text="23:00" />
+
+    <TextView
+        android:id="@+id/t_lateNightTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Late Night" />
+
+    <EditText
+        android:id="@+id/e_lateNightTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time"
+        android:text="3:00" />
+
     <Button
         android:id="@+id/b_submitSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Submit"/>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/t_titleSettings"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Blood Glucose Levels"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/t_titleLow"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Low Blood Sugar" />
-
-            <EditText
-                android:id="@+id/e_lowBlood"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="numberDecimal"
-                android:text="4.0" />
-
-            <TextView
-                android:id="@+id/t_titleHigh"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="High Blood Sugar" />
-
-            <EditText
-                android:id="@+id/e_highBlood"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="numberDecimal"
-                android:text="9.0" />
-
-            <TextView
-                android:id="@+id/t_titleVeryHigh"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Very High Blood Sugar" />
-
-            <EditText
-                android:id="@+id/e_veryHighBlood"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="numberDecimal"
-                android:text="15.0" />
-
-            <TextView
-                android:id="@+id/t_titleMealTimes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Meal Times"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/t_titleBreakfast"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Breakfast" />
-
-            <EditText
-                android:id="@+id/e_breakfastTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="time"
-                android:text="8:00" />
-
-            <TextView
-                android:id="@+id/t_titleLunch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Lunch" />
-
-            <EditText
-                android:id="@+id/e_lunchTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="time"
-                android:text="12:00" />
-
-            <TextView
-                android:id="@+id/t_titleSupper"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Supper" />
-
-            <EditText
-                android:id="@+id/e_supperTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="time"
-                android:text="17:00" />
-
-            <TextView
-                android:id="@+id/t_titleNight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Night" />
-
-            <EditText
-                android:id="@+id/e_nightTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="time"
-                android:text="23:00" />
-
-            <TextView
-                android:id="@+id/t_titleLateNight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Late Night" />
-
-            <EditText
-                android:id="@+id/e_lateNightTime"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="time"
-                android:text="3:00" />
-        </LinearLayout>
-    </ScrollView>
 
 </LinearLayout>
