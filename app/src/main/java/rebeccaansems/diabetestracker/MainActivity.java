@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("c6h12o6");
+        setTitle("SixTwelveSx");
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

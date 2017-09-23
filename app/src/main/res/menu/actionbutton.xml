@@ -7,11 +7,16 @@
         android:icon="@drawable/ic_more_vert_white_24dp"
         android:orderInCategory="3"
         app:showAsAction="ifRoom"/>
+    <item android:id="@+id/food"
+        android:title="Food"
+        android:icon="@drawable/ic_food_apple_white_24dp"
+        android:orderInCategory="2"
+        app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/newentry"
-        android:title="Add"
+        android:title="Glucose"
         android:icon="@drawable/ic_opacity_white_24dp"
-        android:orderInCategory="2"
+        android:orderInCategory="1"
         app:showAsAction="ifRoom"/>
 
 </menu>
