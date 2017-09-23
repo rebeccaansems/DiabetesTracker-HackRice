@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -66,8 +67,9 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
 
         // scaling can now only be done on x- and y-axis separately
         mChart.setPinchZoom(false);
-        // draw shadows for each bar that show the maximum value
-        // mChart.setDrawBarShadow(true);
+        Description description = new Description();
+        description.setText("Blood Sugar Averages");
+        mChart.setDescription(description);
 
         mChart.setDrawGridBackground(false);
         XAxis xl = mChart.getXAxis();
@@ -85,17 +87,18 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
         yl.setDrawGridLines(false);
         yl.setDrawLabels(false);
         yl.setAxisMinimum(0f); // this replaces setStartAtZero(true)
-//        yl.setInverted(true);
+        yl.setAxisMaximum(24);
 
         YAxis yr = mChart.getAxisRight();
         yr.setDrawAxisLine(true);
         yr.setDrawGridLines(false);
-        yr.setAxisMinimum(0f); // this replaces setStartAtZero(true)
-//        yr.setInverted(true);
+        yr.setAxisMinimum(0f);
+        yr.setAxisMaximum(24);
 
         setData(7);
         mChart.setFitBars(true);
         mChart.animateY(2500);
+        mChart.setDrawBorders(true);
 
 
         Legend l = mChart.getLegend();
@@ -160,17 +163,17 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
             mChart.getData().notifyDataChanged();
             mChart.notifyDataSetChanged();
         } else {
-            lowSet = new BarDataSet(yValsLow, "DataSet 1");
-            normSet = new BarDataSet(yValsNorm, "DataSet 2");
-            highSet = new BarDataSet(yValsHigh, "DataSet 3");
-            veryHighSet = new BarDataSet(yValsVeryHigh, "DataSet 4");
+            lowSet = new BarDataSet(yValsLow, "Low");
+            normSet = new BarDataSet(yValsNorm, "Normal");
+            highSet = new BarDataSet(yValsHigh, "High");
+            veryHighSet = new BarDataSet(yValsVeryHigh, "Very High");
 
             lowSet.setDrawIcons(true);
-            lowSet.setColor(getResources().getColor(R.color.colorPrimaryDark));
+            lowSet.setColor(Color.BLUE);
             lowSet.setHighLightColor(getResources().getColor(R.color.colorAccent));
 
             normSet.setDrawIcons(true);
-            normSet.setColor(getResources().getColor(R.color.colorPrimary));
+            normSet.setColor(Color.GREEN);
             normSet.setHighLightColor(getResources().getColor(R.color.colorAccent));
 
             highSet.setDrawIcons(true);
@@ -180,8 +183,6 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
             veryHighSet.setDrawIcons(true);
             veryHighSet.setColor(Color.RED);
             veryHighSet.setHighLightColor(getResources().getColor(R.color.colorAccent));
-
-      //      set1.setValueTypeface(Typeface.DEFAULT_BOLD);
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
             dataSets.add(lowSet);
@@ -193,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
             data.setValueTextSize(10f);
             data.setBarWidth(1);
             data.setValueTextSize(20);
-            data.setValueTextColor(getResources().getColor(R.color.colorLight));
+            data.setValueTextColor(getResources().getColor(R.color.colorPrimaryDark));
             data.setValueTypeface(Typeface.DEFAULT_BOLD);
             mChart.setData(data);
         }
