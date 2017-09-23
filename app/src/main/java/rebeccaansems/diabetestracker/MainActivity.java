@@ -153,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
             case R.id.settings:
                 Intent intent = new Intent(this, Settings.class);
                 startActivity(intent);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
