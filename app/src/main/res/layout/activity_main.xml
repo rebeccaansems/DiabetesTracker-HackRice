@@ -8,9 +8,9 @@
     android:orientation="vertical"
     tools:context="rebeccaansems.diabetestracker.MainActivity">
 
-    <Button
-        android:id="@+id/b_gotoSettings"
+    <include
+        layout="@layout/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Settings" />
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
