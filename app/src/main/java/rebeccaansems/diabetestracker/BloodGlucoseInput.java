@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -51,7 +52,7 @@ public class BloodGlucoseInput extends AppCompatActivity
 
     void addData(){
         BloodSugarDataPoint bsdp = new BloodSugarDataPoint(Float.parseFloat(currentBloodSugar.getText().toString()),
-                new Date(), didExercise.isChecked(), isSick.isChecked(), isHoromones.isChecked());
+                new SimpleDateFormat("dd.HH").format(new Date()), didExercise.isChecked(), isSick.isChecked(), isHoromones.isChecked());
         bsdp.save();
 
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);

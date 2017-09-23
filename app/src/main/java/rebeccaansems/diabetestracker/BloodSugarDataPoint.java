@@ -11,18 +11,18 @@ import java.util.Date;
 public class BloodSugarDataPoint extends SugarRecord<BloodSugarDataPoint> {
 
     public float bloodSugarValue;
-    public Date dateTime;
+    public String dateTime;
     public boolean didExercise, isSick, isHoromones;
 
     public BloodSugarDataPoint(){
     }
 
-    public BloodSugarDataPoint(float bloodSugarValue, Date dateTime){
+    public BloodSugarDataPoint(float bloodSugarValue, String dateTime){
         this.bloodSugarValue = bloodSugarValue;
         this.dateTime = dateTime;
     }
 
-    public BloodSugarDataPoint(float bloodSugarValue, Date dateTime,
+    public BloodSugarDataPoint(float bloodSugarValue, String dateTime,
                                boolean didExercise, boolean isSick, boolean isHoromones){
         this.bloodSugarValue = bloodSugarValue;
         this.dateTime = dateTime;

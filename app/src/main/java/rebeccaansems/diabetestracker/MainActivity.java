@@ -1,5 +1,6 @@
 package rebeccaansems.diabetestracker;
 
+import android.accounts.AbstractAccountAuthenticator;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -37,7 +38,10 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
+import java.io.Console;
+import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnChartValueSelectedListener {
@@ -105,11 +109,23 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
         float barWidth = 5f;
         float spaceForBar = 8f;
         ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
-        for(int i = count; i>0; i--){
-            float val = (float)Math.random()*10;
 
-                yVals1.add(new BarEntry(i * spaceForBar, (float) (Math.random() * 10)
-                ));
+        List<BloodSugarDataPoint> bloodSugars = BloodSugarDataPoint.listAll(BloodSugarDataPoint.class);
+        float[][] bloodSugarAvg = new float[24][2];
+
+        for(int i=0; i < bloodSugars.size(); i++){
+            bloodSugarAvg[Integer.parseInt(bloodSugars.get(i).dateTime.substring(3))][0]++;
+            bloodSugarAvg[Integer.parseInt(bloodSugars.get(i).dateTime.substring(3))][1] += bloodSugars.get(i).bloodSugarValue;
+        }
+
+        for(int i = 23; i>=0; i--){
+                System.out.println("DATA: "+bloodSugarAvg[i][1]/bloodSugarAvg[i][0]+" "+bloodSugarAvg[i][1] +" "+bloodSugarAvg[i][0]);
+            if(Float.isNaN((bloodSugarAvg[i][1]/bloodSugarAvg[i][0]))){
+                yVals1.add(new BarEntry(i * spaceForBar, 0));
+            }
+            else {
+                yVals1.add(new BarEntry(i * spaceForBar, (bloodSugarAvg[i][1]/bloodSugarAvg[i][0])));
+            }
 
         }
 
