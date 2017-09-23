@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,12 +18,12 @@ public class Settings extends AppCompatActivity {
 
     EditText lowBlood, highBlood, veryHighBlood;
     EditText breakfastTime, lunchTime, supperTime, nightTime, lateNightTime;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
-
         lowBlood = (EditText)findViewById(R.id.e_lowBlood);
         highBlood = (EditText)findViewById(R.id.e_highBlood);
         veryHighBlood = (EditText)findViewById(R.id.e_veryHighBlood);
@@ -35,6 +36,12 @@ public class Settings extends AppCompatActivity {
 
         LoadSavedData();
 
+        setTitle("Settings");
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         Button submitSettings = (Button) findViewById(R.id.b_submitSettings);
         submitSettings.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -42,7 +49,13 @@ public class Settings extends AppCompatActivity {
                 gotoMainScreen();
             }
         });
+
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
 
     void LoadSavedData(){
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
@@ -78,6 +91,18 @@ public class Settings extends AppCompatActivity {
     void gotoMainScreen(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+        <include
+            layout="@layout/toolbar"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/b_submitSettings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Submit"/>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_below="@id/toolbar"
+            android:layout_height="match_parent">
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:orientation="vertical" >
 
             <TextView
@@ -24,12 +25,14 @@
                 android:layout_height="wrap_content"
                 android:text="Blood Glucose Levels"
                 android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/t_titleLow"
                 android:layout_width="match_parent"
+                android:textStyle="bold"
                 android:layout_height="wrap_content"
                 android:text="Low Blood Sugar" />
 
@@ -38,6 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textColor="@color/colorPrimary"
                 android:inputType="numberDecimal"
                 android:text="4.0" />
 
@@ -45,6 +49,7 @@
                 android:id="@+id/t_titleHigh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="High Blood Sugar" />
 
             <EditText
@@ -52,6 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textColor="@color/colorPrimary"
                 android:inputType="numberDecimal"
                 android:text="9.0" />
 
@@ -59,6 +65,7 @@
                 android:id="@+id/t_titleVeryHigh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="Very High Blood Sugar" />
 
             <EditText
@@ -66,6 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textColor="@color/colorPrimary"
                 android:inputType="numberDecimal"
                 android:text="15.0" />
 
@@ -75,6 +83,7 @@
                 android:layout_height="wrap_content"
                 android:text="Meal Times"
                 android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -82,6 +91,7 @@
                 android:id="@+id/t_titleBreakfast"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="Breakfast" />
 
             <EditText
@@ -89,6 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textColor="@color/colorPrimary"
                 android:inputType="time"
                 android:text="8:00" />
 
@@ -96,6 +107,7 @@
                 android:id="@+id/t_titleLunch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:text="Lunch" />
 
             <EditText
@@ -103,6 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textColor="@color/colorPrimary"
                 android:inputType="time"
                 android:text="12:00" />
 
@@ -110,7 +123,8 @@
                 android:id="@+id/t_titleSupper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Supper" />
+                android:textStyle="bold"
+                android:text="Dinner" />
 
             <EditText
                 android:id="@+id/e_supperTime"
@@ -118,11 +132,13 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="time"
+                android:textColor="@color/colorPrimary"
                 android:text="17:00" />
 
             <TextView
                 android:id="@+id/t_titleNight"
                 android:layout_width="match_parent"
+                android:textStyle="bold"
                 android:layout_height="wrap_content"
                 android:text="Night" />
 
@@ -132,11 +148,13 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="time"
+                android:textColor="@color/colorPrimary"
                 android:text="23:00" />
 
             <TextView
                 android:id="@+id/t_titleLateNight"
                 android:layout_width="match_parent"
+                android:textStyle="bold"
                 android:layout_height="wrap_content"
                 android:text="Late Night" />
 
@@ -145,9 +163,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textColor="@color/colorPrimary"
                 android:inputType="time"
                 android:text="3:00" />
+            <Button
+                android:id="@+id/b_submitSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submit"/>
         </LinearLayout>
-    </ScrollView>
 
-</LinearLayout>
+        </ScrollView>
+
+</RelativeLayout>

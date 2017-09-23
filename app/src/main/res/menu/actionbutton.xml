@@ -9,7 +9,7 @@
         app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/newentry"
-        android:title="Bug Report"
+        android:title="Add"
         android:icon="@drawable/ic_opacity_white_24dp"
         android:orderInCategory="2"
         app:showAsAction="ifRoom"/>

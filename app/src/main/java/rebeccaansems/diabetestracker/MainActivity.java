@@ -19,17 +19,14 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private TextView mTextMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("SixTwelveSix");
+        setTitle("six-twelve-six");
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
     }
 
 
