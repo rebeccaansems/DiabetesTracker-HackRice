@@ -28,9 +28,11 @@
 
         <activity
             android:name=".Settings"
+            android:theme="@style/AppTheme"
             android:label="Settings" />
         <activity
             android:name=".BloodGlucoseInput"
+            android:theme="@style/AppTheme"
             android:label="Input Blood Glucose" />
     </application>
 
