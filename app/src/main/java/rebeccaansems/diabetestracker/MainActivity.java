@@ -1,8 +1,10 @@
 package rebeccaansems.diabetestracker;
 
 import android.accounts.AbstractAccountAuthenticator;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -73,7 +75,10 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
         xl.setDrawAxisLine(true);
         xl.setDrawGridLines(false);
         xl.setLabelCount(0);
-        xl.setGranularity(10f);
+        xl.setGranularity(0);
+        xl.setLabelCount(24, true);
+        xl.setAxisMinimum(0);
+        xl.setAxisMaximum(24);
 
         YAxis yl = mChart.getAxisLeft();
         yl.setDrawAxisLine(true);
@@ -106,7 +111,10 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
 
         float barWidth = 5f;
         float spaceForBar = 8f;
-        ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
+        ArrayList<BarEntry> yValsLow = new ArrayList<BarEntry>();
+        ArrayList<BarEntry> yValsNorm = new ArrayList<BarEntry>();
+        ArrayList<BarEntry> yValsHigh = new ArrayList<BarEntry>();
+        ArrayList<BarEntry> yValsVeryHigh = new ArrayList<BarEntry>();
 
         List<BloodSugarDataPoint> bloodSugars = BloodSugarDataPoint.listAll(BloodSugarDataPoint.class);
         float[][] bloodSugarAvg = new float[24][2];
@@ -115,39 +123,75 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
             bloodSugarAvg[Integer.parseInt(bloodSugars.get(i).dateTime.substring(3))][0]++;
             bloodSugarAvg[Integer.parseInt(bloodSugars.get(i).dateTime.substring(3))][1] += bloodSugars.get(i).bloodSugarValue;
         }
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
         for(int i = 23; i>=0; i--){
-                System.out.println("DATA: "+bloodSugarAvg[i][1]/bloodSugarAvg[i][0]+" "+bloodSugarAvg[i][1] +" "+bloodSugarAvg[i][0]);
-            if(Float.isNaN((bloodSugarAvg[i][1]/bloodSugarAvg[i][0]))){
-                yVals1.add(new BarEntry(i * spaceForBar, 0));
-            }
-            else {
-                yVals1.add(new BarEntry(i * spaceForBar, (bloodSugarAvg[i][1]/bloodSugarAvg[i][0])));
+            if(!Float.isNaN((bloodSugarAvg[i][1]/bloodSugarAvg[i][0]))){
+                float avg = (bloodSugarAvg[i][1]/bloodSugarAvg[i][0]);
+                if(avg < Float.parseFloat(sharedPref.getString("lowBlood", "4.0"))){
+                    yValsLow.add(new BarEntry(i, avg));
+                } else if (avg < Float.parseFloat(sharedPref.getString("highBlood", "10.0"))){
+                    yValsNorm.add(new BarEntry(i, avg));
+                } else if (avg < Float.parseFloat(sharedPref.getString("veryHighBlood", "15.0"))){
+                    yValsHigh.add(new BarEntry(i, avg));
+                } else {
+                    yValsVeryHigh.add(new BarEntry(i, avg));
+                }
             }
 
         }
 
 
-        BarDataSet set1;
+        BarDataSet lowSet, normSet, highSet, veryHighSet;
 
         if (mChart.getData() != null && mChart.getData().getDataSetCount() > 0) {
-            set1 = (BarDataSet)mChart.getData().getDataSetByIndex(0);
-            set1.setValues(yVals1);
+            lowSet = (BarDataSet)mChart.getData().getDataSetByIndex(0);
+            lowSet.setValues(yValsLow);
+
+            normSet = (BarDataSet)mChart.getData().getDataSetByIndex(0);
+            normSet.setValues(yValsNorm);
+
+            highSet = (BarDataSet)mChart.getData().getDataSetByIndex(0);
+            highSet.setValues(yValsHigh);
+
+            veryHighSet = (BarDataSet)mChart.getData().getDataSetByIndex(0);
+            veryHighSet.setValues(yValsVeryHigh);
+
             mChart.getData().notifyDataChanged();
             mChart.notifyDataSetChanged();
         } else {
-            set1 = new BarDataSet(yVals1, "DataSet 1");
+            lowSet = new BarDataSet(yValsLow, "DataSet 1");
+            normSet = new BarDataSet(yValsNorm, "DataSet 2");
+            highSet = new BarDataSet(yValsHigh, "DataSet 3");
+            veryHighSet = new BarDataSet(yValsVeryHigh, "DataSet 4");
 
-            set1.setDrawIcons(true);
-            set1.setColor(getResources().getColor(R.color.colorPrimaryDark));
-            set1.setHighLightColor(getResources().getColor(R.color.colorAccent));
+            lowSet.setDrawIcons(true);
+            lowSet.setColor(getResources().getColor(R.color.colorPrimaryDark));
+            lowSet.setHighLightColor(getResources().getColor(R.color.colorAccent));
+
+            normSet.setDrawIcons(true);
+            normSet.setColor(getResources().getColor(R.color.colorPrimary));
+            normSet.setHighLightColor(getResources().getColor(R.color.colorAccent));
+
+            highSet.setDrawIcons(true);
+            highSet.setColor(Color.YELLOW);
+            highSet.setHighLightColor(getResources().getColor(R.color.colorAccent));
+
+            veryHighSet.setDrawIcons(true);
+            veryHighSet.setColor(Color.RED);
+            veryHighSet.setHighLightColor(getResources().getColor(R.color.colorAccent));
+
       //      set1.setValueTypeface(Typeface.DEFAULT_BOLD);
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
-            dataSets.add(set1);
+            dataSets.add(lowSet);
+            dataSets.add(normSet);
+            dataSets.add(highSet);
+            dataSets.add(veryHighSet);
             BarData data = new BarData(dataSets);
+
             data.setValueTextSize(10f);
-            data.setBarWidth(barWidth);
+            data.setBarWidth(1);
             data.setValueTextSize(20);
             data.setValueTextColor(getResources().getColor(R.color.colorLight));
             data.setValueTypeface(Typeface.DEFAULT_BOLD);
