@@ -22,6 +22,9 @@
         <activity
             android:name=".Settings"
             android:label="Settings" />
+        <activity
+            android:name=".BloodGlucoseInput"
+            android:label="Input Blood Glucose" />
     </application>
 
 </manifest>

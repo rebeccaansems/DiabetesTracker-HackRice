@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <TextView
+        android:id="@+id/t_titleBloodSugar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Blood sugar value?" />
+
+    <EditText
+        android:id="@+id/e_bloodSugarValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <CheckBox
+        android:id="@+id/c_exercise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Post exercise?" />
+
+    <CheckBox
+        android:id="@+id/c_horomones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Horomones?" />
+
+    <CheckBox
+        android:id="@+id/c_sick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sick?" />
+
+    <Button
+        android:id="@+id/b_submitBloodSugarValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit" />
+
+</LinearLayout>

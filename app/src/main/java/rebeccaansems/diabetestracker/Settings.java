@@ -24,6 +24,7 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
+
         lowBlood = (EditText)findViewById(R.id.e_lowBlood);
         highBlood = (EditText)findViewById(R.id.e_highBlood);
         veryHighBlood = (EditText)findViewById(R.id.e_veryHighBlood);
