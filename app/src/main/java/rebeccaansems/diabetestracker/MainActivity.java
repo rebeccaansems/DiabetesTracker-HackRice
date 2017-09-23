@@ -52,6 +52,11 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
         setTitle("six-twelve-six");
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+     //   startService(new Intent(getApplicationContext(), BackgroundService.class)); //Start Notifcation service
+
+
+
         mChart = (HorizontalBarChart) findViewById(R.id.chart1);
         mChart.setOnChartValueSelectedListener(this);
 
