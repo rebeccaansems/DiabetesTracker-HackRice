@@ -146,12 +146,14 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
+        Intent intent = new Intent();
         switch (item.getItemId()) {
             case R.id.newentry:
+                intent = new Intent(this, BloodGlucoseInput.class);
+                startActivity(intent);
                 return true;
             case R.id.settings:
-                Intent intent = new Intent(this, Settings.class);
+                intent = new Intent(this, Settings.class);
                 startActivity(intent);
                 return true;
         }

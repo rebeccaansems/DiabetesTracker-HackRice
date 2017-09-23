@@ -3,12 +3,12 @@ package rebeccaansems.diabetestracker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-
-import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -19,11 +19,17 @@ public class BloodGlucoseInput extends AppCompatActivity
 {
     EditText currentBloodSugar;
     CheckBox didExercise, isSick, isHoromones;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inputbloodsugar);
+
+        setTitle("Input");
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         currentBloodSugar = (EditText) findViewById(R.id.e_bloodSugarValue);
 
@@ -48,5 +54,17 @@ public class BloodGlucoseInput extends AppCompatActivity
     void gotoMainScreen(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
