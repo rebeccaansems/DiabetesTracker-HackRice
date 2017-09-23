@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("six-twelve-six");
+        setTitle("c6h12o6");
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -107,14 +107,10 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
         ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
         for(int i = count; i>0; i--){
             float val = (float)Math.random()*10;
-            if(val > 5){
-                yVals1.add(new BarEntry(i * spaceForBar, (float)(Math.random()*10),getResources().getDrawable(R.drawable.alert)
-                ));
-            }
-            else {
+
                 yVals1.add(new BarEntry(i * spaceForBar, (float) (Math.random() * 10)
                 ));
-            }
+
         }
 
 
