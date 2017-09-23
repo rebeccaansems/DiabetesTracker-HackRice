@@ -58,7 +58,8 @@ public class BloodGlucoseInput extends AppCompatActivity
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         float highBlood = Float.parseFloat(sharedPref.getString("highBlood", "10.0"));
 
-        if(bsdp.bloodSugarValue > highBlood && bsdp.getId() > 3 &&
+        System.out.println("[DATA] "+bsdp.getId());
+        if(bsdp.bloodSugarValue > highBlood && BloodSugarDataPoint.findById(BloodSugarDataPoint.class, bsdp.getId()-2) != null &&
                 BloodSugarDataPoint.findById(BloodSugarDataPoint.class, bsdp.getId()-1).bloodSugarValue > highBlood&&
                 BloodSugarDataPoint.findById(BloodSugarDataPoint.class, bsdp.getId()-2).bloodSugarValue > highBlood){
 
