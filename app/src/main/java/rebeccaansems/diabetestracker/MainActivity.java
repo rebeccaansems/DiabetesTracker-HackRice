@@ -92,8 +92,8 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
         yr.setAxisMinimum(0f);
         yr.setAxisMaximum(24);
 
-      //  setData();
-      //  calculateA1C();
+        setData();
+        calculateA1C();
 
         mChart.setFitBars(true);
         mChart.animateY(2500);

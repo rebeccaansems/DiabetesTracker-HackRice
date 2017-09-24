@@ -4,6 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+
+
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"
@@ -18,6 +21,16 @@
         android:layout_above="@+id/b_submitBloodSugarValue"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/previousval"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="17dp"
+            android:textColor="@color/colorAccent"
+            android:layout_height="wrap_content"
+            android:text="Previous: " />
         <TextView
             android:id="@+id/t_titleBloodSugar"
             android:layout_width="match_parent"
@@ -71,6 +84,17 @@
             android:layout_height="wrap_content"
             android:text="Extra Notes?" />
 
+        <TextView
+            android:id="@+id/timestamp"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:textSize="15dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/colorPrimary"
+            android:layout_height="wrap_content"
+            android:text="Time: " />
+
+
         <EditText
             android:id="@+id/e_notetext"
             android:layout_width="match_parent"
@@ -91,3 +115,4 @@
         android:layout_height="wrap_content"
         android:text="Submit" />
 </RelativeLayout>
+
