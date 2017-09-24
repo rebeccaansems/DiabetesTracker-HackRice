@@ -3,6 +3,11 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="action_search">Search</string>
+    <string name="action_clear">Clear</string>
+    <string name="action_voice">Voice</string>
+    <string name="shadow_description">Drop Shadow</string>
+    <string name="load_more">Load More</string>
 
     <string-array name="spinner_dateranges">
         <item>7 Days</item>

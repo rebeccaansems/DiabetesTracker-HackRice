@@ -106,6 +106,8 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
         l.setDrawInside(false);
         l.setFormSize(8f);
         l.setXEntrySpace(4f);
+
+
     }
 
 
@@ -244,6 +246,10 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
                 return true;
             case R.id.settings:
                 intent = new Intent(this, Settings.class);
+                startActivity(intent);
+                return true;
+            case R.id.food:
+                intent = new Intent(this, FoodActivity.class);
                 startActivity(intent);
                 return true;
         }
