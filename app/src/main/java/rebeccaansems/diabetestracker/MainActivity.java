@@ -42,6 +42,7 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.io.Console;
+import java.text.DecimalFormat;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
         xl.setDrawGridLines(false);
         xl.setLabelCount(0);
         xl.setGranularity(0);
-        xl.setLabelCount(24, true);
+        xl.setLabelCount(25, true);
         xl.setAxisMinimum(0);
         xl.setAxisMaximum(24);
 
@@ -95,11 +96,12 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
         yr.setAxisMinimum(0f);
         yr.setAxisMaximum(24);
 
-        setData(7);
+        setData();
+        calculateA1C();
+
         mChart.setFitBars(true);
         mChart.animateY(2500);
         mChart.setDrawBorders(true);
-
 
         Legend l = mChart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
@@ -110,10 +112,7 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
         l.setXEntrySpace(4f);
     }
 
-    private void setData(int count) {
-
-        float barWidth = 5f;
-        float spaceForBar = 8f;
+    private void setData() {
         ArrayList<BarEntry> yValsLow = new ArrayList<BarEntry>();
         ArrayList<BarEntry> yValsNorm = new ArrayList<BarEntry>();
         ArrayList<BarEntry> yValsHigh = new ArrayList<BarEntry>();
@@ -200,7 +199,21 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
         }
     }
 
+    public void calculateA1C(){
+        TextView predictA1C = (TextView)findViewById(R.id.t_A1CPrediction);
+        List<BloodSugarDataPoint> bloodSugars = BloodSugarDataPoint.listAll(BloodSugarDataPoint.class);
+        if(bloodSugars.size() > 0){
+            int total = 0;
+            for(int i=0; i<bloodSugars.size(); i++){
+                total += bloodSugars.get(i).bloodSugarValue;
+            }
 
+            double d = total/bloodSugars.size();
+            predictA1C.setText("Predicted A1C is: "+String.format("%.1f", d));
+        } else {
+            predictA1C.setText("Not enough data to predict A1C");
+        }
+    }
 
 
     @Override
