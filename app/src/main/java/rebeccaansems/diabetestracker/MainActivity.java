@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -159,7 +160,6 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
                 i = dateAdjust*10;
             }
         }
-
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
         for(int i = 23; i>=0; i--){
@@ -258,7 +258,12 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
     }
 
     public void onValueSelected(Entry e, Highlight h) {
+        Toast.makeText(this,"HELLO",Toast.LENGTH_SHORT);
+        Intent intent = new Intent(this,BarAnalysis.class);
+        intent.putExtra("TIMESTAMP",h.getY()); // Send TIMESTAMP CURRENTLY NULL
 
+        //SEND REST OF THE DATA OVER
+        startActivity(intent);
     }
 
     @Override
