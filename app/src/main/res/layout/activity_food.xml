@@ -9,11 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="15dp"
-        android:background="@drawable/bottom_shadow"
-        android:contentDescription="@string/shadow_description"/>
+
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -26,7 +22,7 @@
             android:layout_height="56dp"
             android:layout_width="match_parent"
             app:theme="@style/ThemeOverlay.AppCompat.Dark"
-            android:background="#bdbdbd">
+            android:background="@color/colorPrimary">
 
             <EditText
                 android:id="@+id/etSearch"
@@ -54,12 +50,6 @@
                 android:layout_height="wrap_content"/> -->
         </android.support.v7.widget.Toolbar>
 
-        <ImageView
-            android:layout_below="@+id/toolbar_top"
-            android:layout_width="match_parent"
-            android:layout_height="15dp"
-            android:background="@drawable/bottom_shadow"
-            android:contentDescription="@string/shadow_description"/>
 
         <ProgressBar
             android:layout_below="@+id/toolbar_top"
@@ -71,5 +61,18 @@
             android:indeterminateOnly="true"
             android:visibility="invisible"
             android:id="@+id/searchProgress"/>
+
+
+
     </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="No Foods Searched"
+        android:id="@+id/t_nonefoodlabel"
+        android:textStyle="bold"
+        android:visibility="visible"
+        android:textSize="15dp"
+        />
 </RelativeLayout>

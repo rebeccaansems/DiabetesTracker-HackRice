@@ -1,49 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <include
-        layout="@layout/toolbar"
         android:id="@+id/toolbar"
+        layout="@layout/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/t_titleBloodSugar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Blood sugar value?" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_margin="10dp"
+        android:layout_above="@+id/b_submitBloodSugarValue"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/e_bloodSugarValue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal" />
+        <TextView
+            android:id="@+id/t_titleBloodSugar"
+            android:layout_width="match_parent"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_height="wrap_content"
+            android:text="Blood sugar value?" />
 
-    <CheckBox
-        android:id="@+id/c_exercise"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Post exercise?" />
+        <EditText
+            android:id="@+id/e_bloodSugarValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal" />
 
-    <CheckBox
-        android:id="@+id/c_horomones"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Horomones?" />
+        <CheckBox
+            android:id="@+id/c_exercise"
+            android:layout_width="match_parent"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_height="wrap_content"
+            android:text="Post exercise?" />
 
-    <CheckBox
-        android:id="@+id/c_sick"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sick?" />
+        <CheckBox
+            android:id="@+id/c_horomones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="Hormones?" />
 
+        <CheckBox
+            android:id="@+id/c_sick"
+            android:layout_width="match_parent"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_height="wrap_content"
+            android:text="Sick?" />
+
+        <TextView
+            android:id="@+id/t_Notes"
+            android:layout_width="match_parent"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_height="wrap_content"
+            android:text="Extra Notes?" />
+
+        <EditText
+            android:id="@+id/e_notetext"
+            android:layout_width="match_parent"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:layout_height="match_parent"
+            android:singleLine="false"
+            style="@style/Widget.AppCompat.EditText"
+            android:ems="10"
+            />
+
+
+    </LinearLayout>
     <Button
         android:id="@+id/b_submitBloodSugarValue"
         android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
         android:layout_height="wrap_content"
         android:text="Submit" />
-
-</LinearLayout>
+</RelativeLayout>

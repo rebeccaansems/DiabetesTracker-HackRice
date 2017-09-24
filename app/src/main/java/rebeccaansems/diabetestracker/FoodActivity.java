@@ -49,6 +49,7 @@ public class FoodActivity extends AppCompatActivity {
     private static int CURRENT_PAGE = 0; // Was used to control page items with CURRENT_PAGE++
 
     private View mListViewFooter; // ListView Footer
+    private TextView nonelabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class FoodActivity extends AppCompatActivity {
 
 
         mListViewFooter = inflater.inflate(food_row_footer, null);
-        setTitle("Settings");
+        nonelabel =(TextView)findViewById(R.id.t_nonefoodlabel);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     //    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -80,8 +81,11 @@ public class FoodActivity extends AppCompatActivity {
     private void updateList() {
         if (mSearchAdapter.getCount() == 0) {
             mListView.setVisibility(View.GONE);
+            nonelabel.setVisibility(View.VISIBLE);
         } else {
             mListView.setVisibility(View.VISIBLE);
+            nonelabel.setVisibility(View.INVISIBLE);
+
         }
     }
 

@@ -31,7 +31,7 @@ public class BloodGlucoseInput extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inputbloodsugar);
 
-        setTitle("Input");
+        setTitle("Blood Glucose");
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
