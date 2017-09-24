@@ -50,8 +50,9 @@ public class BloodGlucoseInput extends AppCompatActivity
         });
     }
 
+    BloodSugarDataPoint bsdp;
     void addData(){
-        BloodSugarDataPoint bsdp = new BloodSugarDataPoint(Float.parseFloat(currentBloodSugar.getText().toString()),
+        bsdp = new BloodSugarDataPoint(Float.parseFloat(currentBloodSugar.getText().toString()),
                 new SimpleDateFormat("dd.HH").format(new Date()), didExercise.isChecked(), isSick.isChecked(), isHoromones.isChecked());
         bsdp.save();
 
@@ -80,8 +81,10 @@ public class BloodGlucoseInput extends AppCompatActivity
                     })
                     .setNegativeButton("Contact Doctor", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                            gotoMainScreen();
+                            Communicate.SendMessageDoctor(BloodSugarDataPoint.findById(BloodSugarDataPoint.class,
+                                    bsdp.getId()).bloodSugarValue +" "+BloodSugarDataPoint.findById(BloodSugarDataPoint.class,
+                                    bsdp.getId()-1).bloodSugarValue+" "+BloodSugarDataPoint.findById(BloodSugarDataPoint.class,
+                                    bsdp.getId()-2).bloodSugarValue, BloodGlucoseInput.this);
                         }
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
