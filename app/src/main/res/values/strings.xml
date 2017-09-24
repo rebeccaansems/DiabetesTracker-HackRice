@@ -1,6 +1,12 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/tools">
     <string name="app_name">Diabetes Tracker</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string-array name="spinner_dateranges">
+        <item>7 Days</item>
+        <item>30 Days</item>
+        <item>90 Days</item>
+    </string-array>
 </resources>

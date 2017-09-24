@@ -17,7 +17,7 @@ import android.widget.EditText;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.util.Random;
 
 
 public class BloodGlucoseInput extends AppCompatActivity
@@ -106,6 +106,17 @@ public class BloodGlucoseInput extends AppCompatActivity
 
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void fakeData(){
+        Random rand = new Random();
+        for(int i=0; i<250; i++){
+            BloodSugarDataPoint bsdp = new BloodSugarDataPoint(rand.nextFloat() * (20 - 2) + 2,
+                    new SimpleDateFormat("dd.HH").format(new Date(
+                            -946771200000L + (Math.abs(rand.nextLong()) % (70L * 365 * 24 * 60 * 60 * 1000)))),
+                    didExercise.isChecked(), isSick.isChecked(), isHoromones.isChecked());
+            bsdp.save();
         }
     }
 }

@@ -7,20 +7,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.SeekBar;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.HorizontalBarChart;
@@ -48,6 +43,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static android.webkit.ConsoleMessage.MessageLevel.LOG;
+
 public class MainActivity extends AppCompatActivity implements OnChartValueSelectedListener {
 
     private Toolbar toolbar;
@@ -60,8 +57,6 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
         setTitle("SixTwelveSix");
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-     //   startService(new Intent(getApplicationContext(), BackgroundService.class)); //Start Notifcation service
 
         mChart = (HorizontalBarChart) findViewById(R.id.chart1);
         mChart.setOnChartValueSelectedListener(this);
@@ -112,6 +107,8 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
         l.setXEntrySpace(4f);
     }
 
+
+    static String prevDateRange = "";
     private void setData() {
         ArrayList<BarEntry> yValsLow = new ArrayList<BarEntry>();
         ArrayList<BarEntry> yValsNorm = new ArrayList<BarEntry>();
@@ -121,10 +118,48 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
         List<BloodSugarDataPoint> bloodSugars = BloodSugarDataPoint.listAll(BloodSugarDataPoint.class);
         float[][] bloodSugarAvg = new float[24][2];
 
-        for(int i=0; i < bloodSugars.size(); i++){
-            bloodSugarAvg[Integer.parseInt(bloodSugars.get(i).dateTime.substring(3))][0]++;
-            bloodSugarAvg[Integer.parseInt(bloodSugars.get(i).dateTime.substring(3))][1] += bloodSugars.get(i).bloodSugarValue;
+        Spinner dateRange = (Spinner)findViewById(R.id.s_dateRange);
+        dateRange.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                Spinner dateRange = (Spinner)findViewById(R.id.s_dateRange);
+                prevDateRange = dateRange.getSelectedItem().toString();
+                setData();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+        });
+        String currentDateRange = dateRange.getSelectedItem().toString();
+
+        if(!prevDateRange.equals(currentDateRange)){
+            prevDateRange = currentDateRange;
+            setData();
         }
+
+        int dateAdjust;
+        if(currentDateRange.contains("7")){
+            dateAdjust = 7;
+        } else if (currentDateRange.contains("30")){
+            dateAdjust = 30;
+        } else {
+            dateAdjust = 90;
+        }
+
+        for(int i=0; i < dateAdjust*5; i++){
+            if(i < bloodSugars.size()){
+                if(bloodSugars.get(i).dateTime.length() > 3){
+                    bloodSugarAvg[Integer.parseInt(bloodSugars.get(i).dateTime.substring(3))][0]++;
+                    bloodSugarAvg[Integer.parseInt(bloodSugars.get(i).dateTime.substring(3))][1] += bloodSugars.get(i).bloodSugarValue;
+                }
+            }
+            else {
+                i = dateAdjust*10;
+            }
+        }
+
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
         for(int i = 23; i>=0; i--){
@@ -143,25 +178,8 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
 
         }
 
-
         BarDataSet lowSet, normSet, highSet, veryHighSet;
 
-        if (mChart.getData() != null && mChart.getData().getDataSetCount() > 0) {
-            lowSet = (BarDataSet)mChart.getData().getDataSetByIndex(0);
-            lowSet.setValues(yValsLow);
-
-            normSet = (BarDataSet)mChart.getData().getDataSetByIndex(0);
-            normSet.setValues(yValsNorm);
-
-            highSet = (BarDataSet)mChart.getData().getDataSetByIndex(0);
-            highSet.setValues(yValsHigh);
-
-            veryHighSet = (BarDataSet)mChart.getData().getDataSetByIndex(0);
-            veryHighSet.setValues(yValsVeryHigh);
-
-            mChart.getData().notifyDataChanged();
-            mChart.notifyDataSetChanged();
-        } else {
             lowSet = new BarDataSet(yValsLow, "Low");
             normSet = new BarDataSet(yValsNorm, "Normal");
             highSet = new BarDataSet(yValsHigh, "High");
@@ -196,7 +214,7 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
             data.setValueTextColor(getResources().getColor(R.color.colorPrimaryDark));
             data.setValueTypeface(Typeface.DEFAULT_BOLD);
             mChart.setData(data);
-        }
+
     }
 
     public void calculateA1C(){
